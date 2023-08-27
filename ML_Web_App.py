@@ -105,18 +105,24 @@ classifier = st.sidebar.selectbox('Classifier', ('Support Vector Machine', 'Logi
 # When the 'Predict' button is clicked, check which classifier is chosen and call the 'prediction()' function.
 # Store the predicted value in the 'species_type' variable accuracy score of the model in the 'score' variable.
 # Print the values of 'species_type' and 'score' variables using the 'st.text()' function.
+# ... (previous code)
+
+# When the 'Predict' button is clicked, check which classifier is chosen and call the 'prediction()' function.
+# Store the predicted value in the 'species_type' variable accuracy score of the model in the 'score' variable.
+# Print the values of 'species_type' and 'score' variables using the 'st.text()' function.
 if st.sidebar.button("Predict"):
   if classifier == 'Support Vector Machine':
-    species_type = prediction(svc_model, b_len, b_depth, f_len, b_mass, sex)
+    species_type = prediction(svc_model, isl, b_len, b_depth, f_len, b_mass, sex)  # Corrected
     score = svc_model.score(X_train, y_train)
 
-  elif classifier =='Logistic Regression':
-    species_type = prediction(svc_model, b_len, b_depth, f_len, b_mass, sex)
+  elif classifier == 'Logistic Regression':
+    species_type = prediction(log_reg, isl, b_len, b_depth, f_len, b_mass, sex)  # Corrected
     score = log_reg.score(X_train, y_train)
 
   else:
-    species_type = prediction(svc_model, b_len, b_depth, f_len, b_mass, sex)
+    species_type = prediction(rf_clf, isl, b_len, b_depth, f_len, b_mass, sex)  # Corrected
     score = rf_clf.score(X_train, y_train)
 
   st.write("Species predicted:", species_type)
   st.write("Accuracy score of this model is:", score)
+
